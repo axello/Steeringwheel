@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DE712B6359968ABFEABA30A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE71516B0B63BB649C0EF05 /* ViewController.m */; };
 		7769CDC31A50B4B9001A98B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7769CDC21A50B4B9001A98B0 /* main.m */; };
 		7769CDC61A50B4B9001A98B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7769CDC51A50B4B9001A98B0 /* AppDelegate.m */; };
-		7769CDC91A50B4B9001A98B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7769CDC81A50B4B9001A98B0 /* ViewController.m */; };
 		7769CDCC1A50B4B9001A98B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7769CDCA1A50B4B9001A98B0 /* Main.storyboard */; };
 		7769CDCE1A50B4B9001A98B0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7769CDCD1A50B4B9001A98B0 /* Images.xcassets */; };
 		7769CDD11A50B4B9001A98B0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7769CDCF1A50B4B9001A98B0 /* LaunchScreen.xib */; };
 		7769CDDD1A50B4B9001A98B0 /* SteeringWheelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7769CDDC1A50B4B9001A98B0 /* SteeringWheelTests.m */; };
+		7769CDEA1A50B555001A98B0 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = 7769CDE81A50B555001A98B0 /* BLE.m */; };
+		7769CDF01A50B5FB001A98B0 /* SWProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 7769CDEF1A50B5FB001A98B0 /* SWProtocol.m */; };
+		7769CDF21A50B77D001A98B0 /* grant-revolution-steering-wheels.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7769CDF11A50B77D001A98B0 /* grant-revolution-steering-wheels.jpg */; };
+		7769CDF51A50C159001A98B0 /* AccelerometerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7769CDF41A50C159001A98B0 /* AccelerometerFilter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,19 +31,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2DE71516B0B63BB649C0EF05 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = SteeringWheelTests/ViewController.m; sourceTree = SOURCE_ROOT; };
+		2DE71E0A14A9131109E5034A /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = SteeringWheelTests/ViewController.h; sourceTree = SOURCE_ROOT; };
 		7769CDBD1A50B4B9001A98B0 /* SteeringWheel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteeringWheel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7769CDC11A50B4B9001A98B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7769CDC21A50B4B9001A98B0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7769CDC41A50B4B9001A98B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7769CDC51A50B4B9001A98B0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7769CDC71A50B4B9001A98B0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		7769CDC81A50B4B9001A98B0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7769CDCB1A50B4B9001A98B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7769CDCD1A50B4B9001A98B0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7769CDD01A50B4B9001A98B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7769CDD61A50B4B9001A98B0 /* SteeringWheelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SteeringWheelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7769CDDB1A50B4B9001A98B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7769CDDC1A50B4B9001A98B0 /* SteeringWheelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SteeringWheelTests.m; sourceTree = "<group>"; };
+		7769CDE71A50B555001A98B0 /* BLE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
+		7769CDE81A50B555001A98B0 /* BLE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
+		7769CDE91A50B555001A98B0 /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
+		7769CDEE1A50B5FB001A98B0 /* SWProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWProtocol.h; sourceTree = "<group>"; };
+		7769CDEF1A50B5FB001A98B0 /* SWProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWProtocol.m; sourceTree = "<group>"; };
+		7769CDF11A50B77D001A98B0 /* grant-revolution-steering-wheels.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "grant-revolution-steering-wheels.jpg"; path = "../../../Desktop/grant-revolution-steering-wheels.jpg"; sourceTree = "<group>"; };
+		7769CDF31A50C159001A98B0 /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
+		7769CDF41A50C159001A98B0 /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,11 +95,16 @@
 			children = (
 				7769CDC41A50B4B9001A98B0 /* AppDelegate.h */,
 				7769CDC51A50B4B9001A98B0 /* AppDelegate.m */,
-				7769CDC71A50B4B9001A98B0 /* ViewController.h */,
-				7769CDC81A50B4B9001A98B0 /* ViewController.m */,
 				7769CDCA1A50B4B9001A98B0 /* Main.storyboard */,
 				7769CDCD1A50B4B9001A98B0 /* Images.xcassets */,
 				7769CDCF1A50B4B9001A98B0 /* LaunchScreen.xib */,
+				7769CDEE1A50B5FB001A98B0 /* SWProtocol.h */,
+				7769CDEF1A50B5FB001A98B0 /* SWProtocol.m */,
+				7769CDF31A50C159001A98B0 /* AccelerometerFilter.h */,
+				7769CDF41A50C159001A98B0 /* AccelerometerFilter.m */,
+				2DE71516B0B63BB649C0EF05 /* ViewController.m */,
+				2DE71E0A14A9131109E5034A /* ViewController.h */,
+				7769CDE61A50B555001A98B0 /* BLE */,
 				7769CDC01A50B4B9001A98B0 /* Supporting Files */,
 			);
 			path = SteeringWheel;
@@ -96,6 +113,7 @@
 		7769CDC01A50B4B9001A98B0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7769CDF11A50B77D001A98B0 /* grant-revolution-steering-wheels.jpg */,
 				7769CDC11A50B4B9001A98B0 /* Info.plist */,
 				7769CDC21A50B4B9001A98B0 /* main.m */,
 			);
@@ -117,6 +135,16 @@
 				7769CDDB1A50B4B9001A98B0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7769CDE61A50B555001A98B0 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				7769CDE71A50B555001A98B0 /* BLE.h */,
+				7769CDE81A50B555001A98B0 /* BLE.m */,
+				7769CDE91A50B555001A98B0 /* BLEDefines.h */,
+			);
+			path = BLE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +229,7 @@
 			files = (
 				7769CDCC1A50B4B9001A98B0 /* Main.storyboard in Resources */,
 				7769CDD11A50B4B9001A98B0 /* LaunchScreen.xib in Resources */,
+				7769CDF21A50B77D001A98B0 /* grant-revolution-steering-wheels.jpg in Resources */,
 				7769CDCE1A50B4B9001A98B0 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,9 +248,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7769CDC91A50B4B9001A98B0 /* ViewController.m in Sources */,
+				7769CDF51A50C159001A98B0 /* AccelerometerFilter.m in Sources */,
 				7769CDC61A50B4B9001A98B0 /* AppDelegate.m in Sources */,
 				7769CDC31A50B4B9001A98B0 /* main.m in Sources */,
+				7769CDEA1A50B555001A98B0 /* BLE.m in Sources */,
+				7769CDF01A50B5FB001A98B0 /* SWProtocol.m in Sources */,
+				2DE712B6359968ABFEABA30A /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +444,7 @@
 				7769CDE21A50B4B9001A98B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7769CDE31A50B4B9001A98B0 /* Build configuration list for PBXNativeTarget "SteeringWheelTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +453,7 @@
 				7769CDE51A50B4B9001A98B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

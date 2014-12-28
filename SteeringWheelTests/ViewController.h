@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreMotion/CMMotionManager.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UIAccelerometerDelegate>
 
 
 @end

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +16,81 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999966" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grant-revolution-steering-wheels.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="LCt-Yq-GWJ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accelleration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsg-nU-qiM">
+                                <rect key="frame" x="250" y="11" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Fdd-PC-SmO" userLabel="Accelleration Slider">
+                                <rect key="frame" x="64" y="40" width="472" height="31"/>
+                                <connections>
+                                    <action selector="setAccelleration:" destination="vXZ-lx-hvc" eventType="valueChanged" id="rs5-6v-Vgz"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acc: 0.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPU-AD-IWn">
+                                <rect key="frame" x="250" y="78" width="63" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Breaking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJy-Tn-a9I">
+                                <rect key="frame" x="256" y="491" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Rb2-K2-e41" userLabel="Brake Slider">
+                                <rect key="frame" x="64" y="520" width="452" height="31"/>
+                                <connections>
+                                    <action selector="setBreakLimit:" destination="vXZ-lx-hvc" eventType="valueChanged" id="q1C-zY-cKw"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="break: 0.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukj-Ey-nfc">
+                                <rect key="frame" x="256" y="558" width="77" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Fdd-PC-SmO" secondAttribute="trailing" constant="50" id="1DS-jj-TVB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LCt-Yq-GWJ" secondAttribute="trailing" constant="-16" id="8kd-AH-OAx"/>
+                            <constraint firstItem="Rb2-K2-e41" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="50" id="E4d-71-9jP"/>
+                            <constraint firstItem="dPU-AD-IWn" firstAttribute="top" secondItem="Fdd-PC-SmO" secondAttribute="bottom" constant="8" id="GxU-yg-GSj"/>
+                            <constraint firstItem="Fdd-PC-SmO" firstAttribute="centerX" secondItem="nsg-nU-qiM" secondAttribute="centerX" id="HeN-ju-S9y"/>
+                            <constraint firstItem="MJy-Tn-a9I" firstAttribute="leading" secondItem="ukj-Ey-nfc" secondAttribute="leading" id="KCB-Vu-FcF"/>
+                            <constraint firstItem="Fdd-PC-SmO" firstAttribute="top" secondItem="nsg-nU-qiM" secondAttribute="bottom" constant="8" id="PGp-TI-lnf"/>
+                            <constraint firstItem="ukj-Ey-nfc" firstAttribute="top" secondItem="Rb2-K2-e41" secondAttribute="bottom" constant="8" id="RDg-EU-fcq"/>
+                            <constraint firstItem="Rb2-K2-e41" firstAttribute="centerX" secondItem="MJy-Tn-a9I" secondAttribute="centerX" id="Shl-GO-eGc"/>
+                            <constraint firstItem="Fdd-PC-SmO" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="XgG-Hb-txZ"/>
+                            <constraint firstItem="LCt-Yq-GWJ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-20" id="cEP-ao-c8x"/>
+                            <constraint firstItem="dPU-AD-IWn" firstAttribute="leading" secondItem="nsg-nU-qiM" secondAttribute="leading" id="dX3-bs-aYT"/>
+                            <constraint firstItem="Fdd-PC-SmO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="50" id="gwo-S9-tlB"/>
+                            <constraint firstItem="LCt-Yq-GWJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="jUO-2n-QyS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rb2-K2-e41" secondAttribute="trailing" constant="70" id="lS5-lG-Mlr"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="LCt-Yq-GWJ" secondAttribute="bottom" id="rEl-7Q-2i7"/>
+                            <constraint firstItem="Rb2-K2-e41" firstAttribute="top" secondItem="MJy-Tn-a9I" secondAttribute="bottom" constant="8" id="swd-un-3hb"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Rb2-K2-e41" secondAttribute="bottom" constant="50" id="wbA-0k-BEA"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="accellerationSlider" destination="Fdd-PC-SmO" id="I74-uk-sYx"/>
+                        <outlet property="breakSlider" destination="Rb2-K2-e41" id="NGH-3N-jcJ"/>
+                        <outlet property="currentAccellerationLevel" destination="dPU-AD-IWn" id="WSs-1H-cZc"/>
+                        <outlet property="currentBreakLevel" destination="ukj-Ey-nfc" id="NiE-Dh-O7q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="grant-revolution-steering-wheels.jpg" width="750" height="750"/>
+    </resources>
 </document>
