@@ -1,17 +1,17 @@
 //
-//  ViewController.m
+//  SteeringVC.m
 //  SteeringWheel
 //
 //  Created by Axel Roest on 28-12-14.
 //  Copyright (c) 2014 Phluxus. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "SteeringVC.h"
 
 #define kUpdateFrequency	60.0
 
 
-@interface ViewController ()
+@interface SteeringVC ()
     
 @property (weak, nonatomic) IBOutlet UISlider *accellSlider;
 @property (weak, nonatomic) IBOutlet UISlider *brakeSlider;
@@ -34,7 +34,7 @@
 @property (nonatomic, strong) NSTimer *updateTimer;
 @end
 
-@implementation ViewController
+@implementation SteeringVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -150,6 +150,17 @@
         // Set the adaptive flag
         self.filter.adaptive = YES;
     }
+}
+
+#pragma mark BLE
+-(void) processData:(uint8_t *) data length:(uint8_t) length
+{
+#if defined(CV_DEBUG)
+    NSLog(@"ControlView: processData");
+    NSLog(@"Length: %d", length);
+#endif
+    
+   // [protocol parseData:data length:length];
 }
 
 @end

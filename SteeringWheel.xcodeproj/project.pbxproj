@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2DE712B6359968ABFEABA30A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE71516B0B63BB649C0EF05 /* ViewController.m */; };
+		2DE712B6359968ABFEABA30A /* SteeringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE71516B0B63BB649C0EF05 /* SteeringVC.m */; };
+		7704128C1A5180E0001E1020 /* RBLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7704128B1A5180E0001E1020 /* RBLDetailViewController.m */; };
+		7704128F1A5181C7001E1020 /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7704128E1A5181C7001E1020 /* MainVC.m */; };
+		770412921A5190CC001E1020 /* CellUuid.m in Sources */ = {isa = PBXBuildFile; fileRef = 770412911A5190CC001E1020 /* CellUuid.m */; };
 		7769CDC31A50B4B9001A98B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7769CDC21A50B4B9001A98B0 /* main.m */; };
 		7769CDC61A50B4B9001A98B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7769CDC51A50B4B9001A98B0 /* AppDelegate.m */; };
 		7769CDCC1A50B4B9001A98B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7769CDCA1A50B4B9001A98B0 /* Main.storyboard */; };
@@ -31,8 +34,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2DE71516B0B63BB649C0EF05 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = SteeringWheelTests/ViewController.m; sourceTree = SOURCE_ROOT; };
-		2DE71E0A14A9131109E5034A /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = SteeringWheelTests/ViewController.h; sourceTree = SOURCE_ROOT; };
+		2DE71516B0B63BB649C0EF05 /* SteeringVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SteeringVC.m; path = SteeringWheelTests/SteeringVC.m; sourceTree = SOURCE_ROOT; };
+		2DE71E0A14A9131109E5034A /* SteeringVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SteeringVC.h; path = SteeringWheelTests/SteeringVC.h; sourceTree = SOURCE_ROOT; };
+		7704128A1A5180E0001E1020 /* RBLDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBLDetailViewController.h; sourceTree = "<group>"; };
+		7704128B1A5180E0001E1020 /* RBLDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBLDetailViewController.m; sourceTree = "<group>"; };
+		7704128D1A5181C7001E1020 /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
+		7704128E1A5181C7001E1020 /* MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
+		770412901A5190CC001E1020 /* CellUuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellUuid.h; sourceTree = "<group>"; };
+		770412911A5190CC001E1020 /* CellUuid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellUuid.m; sourceTree = "<group>"; };
 		7769CDBD1A50B4B9001A98B0 /* SteeringWheel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteeringWheel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7769CDC11A50B4B9001A98B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7769CDC21A50B4B9001A98B0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -96,14 +105,16 @@
 				7769CDC41A50B4B9001A98B0 /* AppDelegate.h */,
 				7769CDC51A50B4B9001A98B0 /* AppDelegate.m */,
 				7769CDCA1A50B4B9001A98B0 /* Main.storyboard */,
+				7704128D1A5181C7001E1020 /* MainVC.h */,
+				7704128E1A5181C7001E1020 /* MainVC.m */,
 				7769CDCD1A50B4B9001A98B0 /* Images.xcassets */,
 				7769CDCF1A50B4B9001A98B0 /* LaunchScreen.xib */,
 				7769CDEE1A50B5FB001A98B0 /* SWProtocol.h */,
 				7769CDEF1A50B5FB001A98B0 /* SWProtocol.m */,
 				7769CDF31A50C159001A98B0 /* AccelerometerFilter.h */,
 				7769CDF41A50C159001A98B0 /* AccelerometerFilter.m */,
-				2DE71516B0B63BB649C0EF05 /* ViewController.m */,
-				2DE71E0A14A9131109E5034A /* ViewController.h */,
+				2DE71516B0B63BB649C0EF05 /* SteeringVC.m */,
+				2DE71E0A14A9131109E5034A /* SteeringVC.h */,
 				7769CDE61A50B555001A98B0 /* BLE */,
 				7769CDC01A50B4B9001A98B0 /* Supporting Files */,
 			);
@@ -140,9 +151,13 @@
 		7769CDE61A50B555001A98B0 /* BLE */ = {
 			isa = PBXGroup;
 			children = (
+				7704128A1A5180E0001E1020 /* RBLDetailViewController.h */,
+				7704128B1A5180E0001E1020 /* RBLDetailViewController.m */,
 				7769CDE71A50B555001A98B0 /* BLE.h */,
 				7769CDE81A50B555001A98B0 /* BLE.m */,
 				7769CDE91A50B555001A98B0 /* BLEDefines.h */,
+				770412901A5190CC001E1020 /* CellUuid.h */,
+				770412911A5190CC001E1020 /* CellUuid.m */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -197,6 +212,11 @@
 					7769CDBC1A50B4B9001A98B0 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 8EXZH89K22;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					7769CDD51A50B4B9001A98B0 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -250,11 +270,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7769CDF51A50C159001A98B0 /* AccelerometerFilter.m in Sources */,
+				7704128F1A5181C7001E1020 /* MainVC.m in Sources */,
+				770412921A5190CC001E1020 /* CellUuid.m in Sources */,
 				7769CDC61A50B4B9001A98B0 /* AppDelegate.m in Sources */,
 				7769CDC31A50B4B9001A98B0 /* main.m in Sources */,
 				7769CDEA1A50B555001A98B0 /* BLE.m in Sources */,
+				7704128C1A5180E0001E1020 /* RBLDetailViewController.m in Sources */,
 				7769CDF01A50B5FB001A98B0 /* SWProtocol.m in Sources */,
-				2DE712B6359968ABFEABA30A /* ViewController.m in Sources */,
+				2DE712B6359968ABFEABA30A /* SteeringVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
