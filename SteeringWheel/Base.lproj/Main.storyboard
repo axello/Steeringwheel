@@ -21,6 +21,13 @@
                             <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999966" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grant-revolution-steering-wheels.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="LCt-Yq-GWJ">
                                 <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="processing.png" translatesAutoresizingMaskIntoConstraints="NO" id="abR-rE-CN1" userLabel="Arduino ImageView">
+                                <rect key="frame" x="275" y="308" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="Jff-zW-lHK"/>
+                                    <constraint firstAttribute="height" constant="64" id="Z8c-Us-4Ph"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accelleration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsg-nU-qiM">
                                 <rect key="frame" x="255" y="95" width="100" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -91,8 +98,10 @@
                             <constraint firstItem="dPU-AD-IWn" firstAttribute="leading" secondItem="nsg-nU-qiM" secondAttribute="leading" id="dX3-bs-aYT"/>
                             <constraint firstItem="dPU-AD-IWn" firstAttribute="leading" secondItem="NoU-CO-KTu" secondAttribute="leading" id="eIh-VY-PVd"/>
                             <constraint firstItem="LCt-Yq-GWJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="jUO-2n-QyS"/>
+                            <constraint firstItem="LCt-Yq-GWJ" firstAttribute="centerY" secondItem="abR-rE-CN1" secondAttribute="centerY" constant="-18" id="jcW-2s-sJQ"/>
                             <constraint firstItem="Deh-Sd-CKg" firstAttribute="top" secondItem="ukj-Ey-nfc" secondAttribute="bottom" constant="8" id="kb9-yo-vej"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Rb2-K2-e41" secondAttribute="trailing" constant="20" id="lS5-lG-Mlr"/>
+                            <constraint firstItem="LCt-Yq-GWJ" firstAttribute="centerX" secondItem="abR-rE-CN1" secondAttribute="centerX" constant="-7" id="lxU-ix-4wg"/>
                             <constraint firstItem="ukj-Ey-nfc" firstAttribute="leading" secondItem="Deh-Sd-CKg" secondAttribute="leading" id="qyL-pD-6nQ"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="LCt-Yq-GWJ" secondAttribute="bottom" id="rEl-7Q-2i7"/>
                             <constraint firstItem="Rb2-K2-e41" firstAttribute="top" secondItem="MJy-Tn-a9I" secondAttribute="bottom" constant="8" id="swd-un-3hb"/>
@@ -102,6 +111,7 @@
                     <navigationItem key="navigationItem" title="SteeringWheel Control" id="aeW-Wj-LFN"/>
                     <connections>
                         <outlet property="accellSlider" destination="50U-rR-yHF" id="ZzG-Z0-y19"/>
+                        <outlet property="arduinoReadyView" destination="abR-rE-CN1" id="y09-gO-fel"/>
                         <outlet property="brakeSlider" destination="Rb2-K2-e41" id="L46-GY-xp8"/>
                         <outlet property="currentAccellerationLevel" destination="dPU-AD-IWn" id="WSs-1H-cZc"/>
                         <outlet property="currentBrakeLevel" destination="ukj-Ey-nfc" id="xai-fF-lKV"/>
@@ -258,5 +268,6 @@
     </scenes>
     <resources>
         <image name="grant-revolution-steering-wheels.jpg" width="750" height="750"/>
+        <image name="processing.png" width="128" height="128"/>
     </resources>
 </document>

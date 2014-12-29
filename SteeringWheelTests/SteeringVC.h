@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "AccelerometerFilter.h"
 #import "BLE.h"
+#import "RBLProtocol.h"
 
-@interface SteeringVC : UIViewController
+@interface SteeringVC : UIViewController <ProtocolDelegate>
 
 @property (strong, nonatomic) BLE *ble;
+@property (strong, nonatomic) RBLProtocol *protocol;
 
 -(void) processData:(uint8_t *) data length:(uint8_t) length;
 
