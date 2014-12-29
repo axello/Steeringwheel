@@ -46,23 +46,26 @@
 */
 
 #import <UIKit/UIKit.h>
+#import <CoreMotion/CMMotionManager.h>
 
 // Basic filter object. 
 @interface AccelerometerFilter : NSObject
 {
 	BOOL adaptive;
-	UIAccelerationValue x, y, z;
+	double x, y, z;
 }
 
 // Add a UIAcceleration to the filter.
-- (void)addAcceleration:(UIAcceleration*)accel;
+- (void)addAcceleration:(CMAcceleration)accel;
 
-@property (nonatomic, readonly) UIAccelerationValue x;
-@property (nonatomic, readonly) UIAccelerationValue y;
-@property (nonatomic, readonly) UIAccelerationValue z;
+@property (nonatomic, readonly) double x;
+@property (nonatomic, readonly) double y;
+@property (nonatomic, readonly) double z;
 
 @property (nonatomic, getter=isAdaptive) BOOL adaptive;
 @property (unsafe_unretained, nonatomic, readonly) NSString *name;
+
+- (double) absAccelleration;
 
 @end
 
@@ -72,7 +75,7 @@
 @interface LowpassFilter : AccelerometerFilter
 {
 	double filterConstant;
-	UIAccelerationValue lastX, lastY, lastZ;
+	double lastX, lastY, lastZ;
 }
 
 - (id)initWithSampleRate:(double)rate cutoffFrequency:(double)freq;
@@ -85,7 +88,7 @@
 @interface HighpassFilter : AccelerometerFilter
 {
 	double filterConstant;
-	UIAccelerationValue lastX, lastY, lastZ;
+	double lastX, lastY, lastZ;
 }
 
 - (id)initWithSampleRate:(double)rate cutoffFrequency:(double)freq;

@@ -45,15 +45,38 @@
  
  */
 
+/* changed into CoreMotion values by Axel */
+
 #import "AccelerometerFilter.h"
 
 // Implementation of the basic filter. All it does is mirror input to output.
+
+#define kAccelerometerMinStep				0.02
+#define kAccelerometerNoiseAttenuation		3.0
+
+double Norm(double x, double y, double z)
+{
+    return sqrt(x * x + y * y + z * z);
+}
+
+double Clamp(double v, double min, double max)
+{
+    if(v > max)
+        return max;
+    else if(v < min)
+        return min;
+    else
+        return v;
+}
+
+
+#pragma mark -
 
 @implementation AccelerometerFilter
 
 @synthesize x, y, z, adaptive;
 
-- (void)addAcceleration:(UIAcceleration *)accel
+- (void)addAcceleration:(CMAcceleration)accel
 {
 	x = accel.x;
 	y = accel.y;
@@ -65,28 +88,11 @@
 	return @"You should not see this";
 }
 
+- (double) absAccelleration
+{
+    return Norm(x, y, z);
+}
 @end
-
-
-#pragma mark -
-
-#define kAccelerometerMinStep				0.02
-#define kAccelerometerNoiseAttenuation		3.0
-
-double Norm(double x, double y, double z)
-{
-	return sqrt(x * x + y * y + z * z);
-}
-
-double Clamp(double v, double min, double max)
-{
-	if(v > max)
-		return max;
-	else if(v < min)
-		return min;
-	else
-		return v;
-}
 
 
 #pragma mark -
@@ -106,7 +112,7 @@ double Clamp(double v, double min, double max)
 	return self;
 }
 
-- (void)addAcceleration:(UIAcceleration *)accel
+- (void)addAcceleration:(CMAcceleration)accel
 {
 	double alpha = filterConstant;
 	
@@ -146,7 +152,7 @@ double Clamp(double v, double min, double max)
 	return self;
 }
 
-- (void)addAcceleration:(UIAcceleration *)accel
+- (void)addAcceleration:(CMAcceleration)accel
 {
 	double alpha = filterConstant;
 	

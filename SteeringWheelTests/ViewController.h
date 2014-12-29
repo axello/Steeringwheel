@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreMotion/CMMotionManager.h>
+#import "AccelerometerFilter.h"
 
-@interface ViewController : UIViewController <UIAccelerometerDelegate>
+@interface ViewController : UIViewController
 
 
 @end
