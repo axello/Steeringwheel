@@ -205,11 +205,8 @@
                                     <action selector="scan:" destination="BOl-ZD-XQQ" eventType="touchUpInside" id="1Tu-Y2-2dM"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tOM-8j-FxE">
-                                <rect key="frame" x="284" y="351" width="20" height="20"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJg-gV-RQz">
-                                <rect key="frame" x="259" y="346" width="82" height="39"/>
+                                <rect key="frame" x="259" y="350" width="82" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Connect">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -218,12 +215,17 @@
                                     <action selector="connect:" destination="BOl-ZD-XQQ" eventType="touchUpInside" id="DlE-1J-AqW"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tOM-8j-FxE">
+                                <rect key="frame" x="290" y="419" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bJg-gV-RQz" firstAttribute="top" secondItem="Wbn-Pu-xJJ" secondAttribute="bottom" constant="26" id="H28-oG-BYd"/>
+                            <constraint firstItem="bJg-gV-RQz" firstAttribute="top" secondItem="Wbn-Pu-xJJ" secondAttribute="bottom" constant="30" id="H28-oG-BYd"/>
                             <constraint firstAttribute="centerY" secondItem="Wbn-Pu-xJJ" secondAttribute="centerY" id="aIK-f5-KiI"/>
+                            <constraint firstItem="tOM-8j-FxE" firstAttribute="top" secondItem="bJg-gV-RQz" secondAttribute="bottom" constant="30" id="kdu-ev-QJB"/>
                             <constraint firstAttribute="centerX" secondItem="Wbn-Pu-xJJ" secondAttribute="centerX" id="lDz-LH-orx"/>
+                            <constraint firstAttribute="centerX" secondItem="tOM-8j-FxE" secondAttribute="centerX" id="pfx-sY-szx"/>
                             <constraint firstAttribute="centerX" secondItem="bJg-gV-RQz" secondAttribute="centerX" id="xIZ-gO-xE1"/>
                         </constraints>
                     </view>
@@ -233,6 +235,7 @@
                         <outlet property="connectButton" destination="bJg-gV-RQz" id="Yeq-O4-JXm"/>
                         <outlet property="scanButton" destination="Wbn-Pu-xJJ" id="j1B-gI-DrV"/>
                         <segue destination="vXZ-lx-hvc" kind="show" identifier="showSteeringVC" id="krH-s2-UyP"/>
+                        <segue destination="CfR-m4-WUO" kind="show" identifier="showDevicesVC" id="VAO-fg-fPL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mec-yW-smf" userLabel="First Responder" sceneMemberID="firstResponder"/>
