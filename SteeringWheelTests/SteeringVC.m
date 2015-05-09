@@ -43,6 +43,8 @@
 @property (nonatomic, strong) NSDictionary *phoneMaxAccelleration;
 @property (nonatomic, strong) NSString *currentPhone;
 
+// contains the --current-- state of all the pixels
+@property (nonatomic, strong) NSMutableArray *allPixels;
 @end
 
 @implementation SteeringVC
@@ -58,6 +60,10 @@
     self.protocol.delegate = self;
     self.protocol.ble = self.ble;
     self.arduinoReadyView.hidden = YES;
+    self.allPixels = [[NSMutableArray alloc] initWithCapacity:TOTALPIXELS];
+    for (int i=0 ; i < TOTALPIXELS ; i++) {
+        self.allPixels[i] = @-1  ;
+    }
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -340,51 +346,67 @@
 //        }
 //        return;
 //    }
+    NSMutableArray *newPixelState = [[NSMutableArray alloc] initWithCapacity:TOTALPIXELS];
+    
     if (segments != lastSegmentShown) {
         int startLed=0;
         int endLed=-1;
-//        switch (segments) {
-//            case kWheelSegment1:
-//                startLed = 0;
-//                endLed = 29;
-//                break;
-//            case kWheelSegment2:
-//                startLed = 3;
-//                endLed = 26;
-//                break;
-//            case kWheelSegment3:
-//                startLed = 6;
-//                endLed = 23;
-//                break;
-//            case kWheelSegment4:
-//                startLed = 9;
-//                endLed = 20;
-//                break;
-//            case kWheelSegment5:
-//                startLed = 12;
-//                endLed = 17;
-//                break;
-//            case kWheelSegmentOff:
-//            default:
-//                break;
-//        }
-        
         switch (segments) {
             case kWheelSegment1:
-                startLed = 25;
+                startLed = 0;
                 endLed = 29;
+                break;
+            case kWheelSegment2:
+                startLed = 3;
+                endLed = 26;
+                break;
+            case kWheelSegment3:
+                startLed = 6;
+                endLed = 23;
+                break;
+            case kWheelSegment4:
+                startLed = 9;
+                endLed = 20;
+                break;
+            case kWheelSegment5:
+                startLed = 12;
+                endLed = 17;
+                break;
             case kWheelSegmentOff:
             default:
                 break;
         }
+//        
+//        switch (segments) {
+//            case kWheelSegment1:
+//                startLed = 25;
+//                endLed = 29;
+//            case kWheelSegmentOff:
+//            default:
+//                break;
+//        }
 
-        for (int i = 25 ; i < TOTALPIXELS; i++) {
+        for (int i = 0 ; i < TOTALPIXELS; i++) {
             if (i >= startLed && i <= endLed) {
-                [protocol rgbWritePixel:i red:0 green:255 blue:0];
+                newPixelState[i] = @1;              // means green
             } else {
-                [protocol rgbWritePixel:i red:255 green:0 blue:0];
+                newPixelState[i] = @0;              // means off
             }
         }
+
+        for (int i = 0 ; i < TOTALPIXELS; i++) {
+            int value = ((NSNumber *) newPixelState[i]).intValue;
+            int oldValue = ((NSNumber *) self.allPixels[i]).intValue;
+            if (value != oldValue) {
+                if (value) {
+                    [protocol rgbWritePixel:i red:0 green:255 blue:0];
+                } else {
+                    [protocol rgbWritePixel:i red:0 green:0 blue:0];
+                }
+                self.allPixels[i] = [newPixelState[i] copy];
+            }
+        }
+
         lastSegmentShown = segments;
     }
 }

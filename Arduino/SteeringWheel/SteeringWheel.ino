@@ -24,11 +24,15 @@
 // Adafruit_NeoPixel strip = Adafruit_NeoPixel(1, 7, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(30, 6, NEO_GRB + NEO_KHZ800);
 
+#define DELAY 500
+
 int R = 0;
 int G = 0;
 int B = 0;
 
 static byte buf_len = 0;
+unsigned long milliSeconds;
+boolean noReturn;
 
 void setup() 
 {
@@ -39,10 +43,17 @@ void setup()
   strip.show(); // Initialize all pixels to 'off'
 
   ble_begin();
+  milliSeconds = millis();
+  noReturn = false;
 }
 
 void loop() 
 {
+  if (millis() > (milliSeconds + DELAY) && noReturn) {
+    Serial.println("");
+    noReturn = false;
+  }
+  
   while(ble_available()) {
     byte cmd;
     cmd = ble_read();
@@ -206,6 +217,8 @@ void loop()
        Serial.print(" ");
         strip.setPixelColor(pin, R,G,B);
         strip.show();
+        milliSeconds = millis();
+        noReturn = true;
 
       } break;
     }
