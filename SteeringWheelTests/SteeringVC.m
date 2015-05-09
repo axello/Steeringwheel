@@ -11,6 +11,7 @@
 
 #define kUpdateFrequency	60.0
 
+#define TOTALPIXELS 30
 
 @interface SteeringVC ()
     
@@ -36,6 +37,12 @@
 @property (nonatomic, strong) NSTimer *updateTimer;
 @property (nonatomic, strong) NSTimer *syncTimer;
 
+// this is the state machine for the currently lit up segments
+@property (nonatomic, assign) kWheelSegments currentSegments;
+
+@property (nonatomic, strong) NSDictionary *phoneMaxAccelleration;
+@property (nonatomic, strong) NSString *currentPhone;
+
 @end
 
 @implementation SteeringVC
@@ -43,6 +50,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.currentPhone = @"iPhone5";
     // Do any additional setup after loading the view, typically from a nib.
     [self setupMotionManager];
     self.protocol = [[RBLProtocol alloc] init];
@@ -55,9 +64,12 @@
 {
     [super viewDidAppear:animated];
     
-    self.syncTimer = [NSTimer scheduledTimerWithTimeInterval:(float)3.0 target:self selector:@selector(syncTimeout:) userInfo:nil repeats:NO];
+//    self.syncTimer = [NSTimer scheduledTimerWithTimeInterval:(float)3.0 target:self selector:@selector(syncTimeout:) userInfo:nil repeats:NO];
+//
+//    [protocol queryProtocolVersion];
+    
+    [self allLights];
 
-    [protocol queryProtocolVersion];
 }
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -86,6 +98,8 @@
     
     self.maxAccelleration = 0.;
     self.maxBrakeLimit = 0.;
+    
+    self.phoneMaxAccelleration = @{@"iPhone4": @2.8 , @"iPhone5" : @4, @"iPhone6" : @6};
 }
 
 - (void)didReceiveMemoryWarning {
@@ -148,13 +162,39 @@
         self.maxBrakeLimit = absAcc;
         self.maxBrakeLevel.text = [NSString stringWithFormat:@"Max brake: %5.3f",absAcc];
     }
-
     
-    // decide upon external actions
-    if (absAcc > 0.5) {
-        [self buzz:YES];
+    [self updateNeoPixels:absAcc];
+}
+
+- (void) updateNeoPixels:(double) absAcc
+{
+    double maxAcc = [self.phoneMaxAccelleration[self.currentPhone] doubleValue];
+    double step = maxAcc / 6.0;
+    
+    if (absAcc != self.currentSegments) {
+        kWheelSegments newSegments;
+        // decide upon external actions
+        if (absAcc > step * 5.0) {
+            //[self buzz:YES];
+            newSegments = kWheelSegmentOff;
+            // and we buzz
+        } else if (absAcc > step * 4.0) {
+            newSegments = kWheelSegment5;
+        } else if (absAcc > step * 3.0) {
+            newSegments = kWheelSegment4;
+        } else if (absAcc > step * 2.0) {
+            newSegments = kWheelSegment3;
+        } else if (absAcc > step * 1.0) {
+            newSegments = kWheelSegment2;
+        } else {
+            newSegments = kWheelSegment1;
+        }
+        [self lights:newSegments];
+        
+        NSLog(@"Accelleration changed to %f, level %lu",absAcc, (unsigned long)newSegments);
+        self.currentSegments = newSegments;
+        // send stuff over BLE
     }
-    // send stuff over BLE
 }
 
 -(void) syncTimeout:(NSTimer *)timer
@@ -290,13 +330,69 @@
     }
 }
 
-- (void) lights:(int)segments
+- (void) lights:(kWheelSegments)segments
 {
-    if (segments < 1) {
-        [protocol digitalWrite:kWheel1 Value:LOW];
-    } else if (segments < 2) {
-        [protocol digitalWrite:kWheel1 Value:HIGH];
+    static kWheelSegments lastSegmentShown=kWheelSegment1;
+//    
+//    if (kWheelSegmentOff == segments ) {
+//        for (int i = 0 ; i < 29; i++) {
+//            [protocol rgbWritePixel:i red:0 green:0 blue:0];
+//        }
+//        return;
+//    }
+    if (segments != lastSegmentShown) {
+        int startLed=0;
+        int endLed=-1;
+//        switch (segments) {
+//            case kWheelSegment1:
+//                startLed = 0;
+//                endLed = 29;
+//                break;
+//            case kWheelSegment2:
+//                startLed = 3;
+//                endLed = 26;
+//                break;
+//            case kWheelSegment3:
+//                startLed = 6;
+//                endLed = 23;
+//                break;
+//            case kWheelSegment4:
+//                startLed = 9;
+//                endLed = 20;
+//                break;
+//            case kWheelSegment5:
+//                startLed = 12;
+//                endLed = 17;
+//                break;
+//            case kWheelSegmentOff:
+//            default:
+//                break;
+//        }
+        
+        switch (segments) {
+            case kWheelSegment1:
+                startLed = 25;
+                endLed = 29;
+            case kWheelSegmentOff:
+            default:
+                break;
+        }
+
+        for (int i = 25 ; i < TOTALPIXELS; i++) {
+            if (i >= startLed && i <= endLed) {
+                [protocol rgbWritePixel:i red:0 green:255 blue:0];
+            } else {
+                [protocol rgbWritePixel:i red:255 green:0 blue:0];
+            }
+        }
+        lastSegmentShown = segments;
     }
-    
+}
+
+- (void) allLights
+{
+    for (int i = 0 ; i < TOTALPIXELS; i++) {
+            [protocol rgbWritePixel:i red:0 green:0 blue:255];
+    }
 }
 @end

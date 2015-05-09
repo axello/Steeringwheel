@@ -202,4 +202,19 @@
     [ble write:nsData];
 }
 
+
+-(void) rgbWritePixel:(uint8_t)pixel red:(uint8_t)red green:(uint8_t)green blue:(uint8_t)blue
+{
+#if defined(PROT_DEBUG)
+    NSLog(@"RBLProtocol: digitalWrite");
+#endif
+    
+    uint8_t buf[] = {'R', pixel, red,green,blue};
+    uint8_t len = 5;
+    
+    NSData *nsData = [[NSData alloc] initWithBytes:buf length:len];
+    [ble write:nsData];
+//    [NSThread sleepForTimeInterval:.05];
+}
+
 @end

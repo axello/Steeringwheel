@@ -84,4 +84,8 @@
 
 -(void) servoWrite:(uint8_t) pin Value:(uint8_t) value; /* write servo pin, value = angle */
 //-(void) servoRead:(uint8_t) pin;
+
+
+-(void) rgbWritePixel:(uint8_t)pixel red:(uint8_t)red green:(uint8_t)green blue:(uint8_t)blue;
+
 @end

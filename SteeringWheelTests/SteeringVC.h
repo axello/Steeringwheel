@@ -11,6 +11,15 @@
 #import "BLE.h"
 #import "RBLProtocol.h"
 
+typedef enum : NSUInteger {
+    kWheelSegmentOff,
+    kWheelSegment1,
+    kWheelSegment2,
+    kWheelSegment3,
+    kWheelSegment4,
+    kWheelSegment5
+} kWheelSegments;
+
 @interface SteeringVC : UIViewController <ProtocolDelegate>
 
 @property (strong, nonatomic) BLE *ble;

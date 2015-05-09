@@ -58,6 +58,7 @@ NSString * const  UUIDIdentifierPrefKey = @"UUIDIdentifierPrefKey";
     else
     {
         [self.connectButton setEnabled:YES];
+        [self performSelector:@selector(connect:) withObject:self afterDelay:1.0];
     }
 
 }
