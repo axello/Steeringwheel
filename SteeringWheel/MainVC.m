@@ -51,6 +51,8 @@ NSString * const  UUIDIdentifierPrefKey = @"UUIDIdentifierPrefKey";
     self.lastUUID = [[NSUserDefaults standardUserDefaults] objectForKey:UUIDPrefKey];
     NSString *id = [[NSUserDefaults standardUserDefaults] objectForKey:UUIDIdentifierPrefKey];
     self.identifier = [[NSUUID alloc] initWithUUIDString:id];
+    [self.scanButton setEnabled:YES];
+
     if ([self.identifier.UUIDString isEqualToString:@""])
     {
         [self.connectButton setEnabled:NO];
@@ -203,7 +205,7 @@ NSString * const  UUIDIdentifierPrefKey = @"UUIDIdentifierPrefKey";
                                               otherButtonTitles:nil];
         [alert show];
     }
-    
+    [self.scanButton setEnabled:YES];
     [activityScanning stopAnimating];
 }
 

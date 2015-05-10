@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *maxAccellerationLevel;
 @property (weak, nonatomic) IBOutlet UILabel *maxBrakeLevel;
 @property (weak, nonatomic) IBOutlet UIImageView *arduinoReadyView;
+- (IBAction)buzzer:(id)sender;
 
 @property (nonatomic, assign) double accelleration;
 @property (nonatomic, assign) double brakeLimit;
@@ -61,9 +62,11 @@
     self.protocol.ble = self.ble;
     self.arduinoReadyView.hidden = YES;
     self.allPixels = [[NSMutableArray alloc] initWithCapacity:TOTALPIXELS];
+    [self setupArduinoPorts];
     for (int i=0 ; i < TOTALPIXELS ; i++) {
         self.allPixels[i] = @-1  ;
     }
+    
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -105,7 +108,7 @@
     self.maxAccelleration = 0.;
     self.maxBrakeLimit = 0.;
     
-    self.phoneMaxAccelleration = @{@"iPhone4": @2.8 , @"iPhone5" : @4, @"iPhone6" : @6};
+    self.phoneMaxAccelleration = @{@"iPhone4": @2.8 , @"iPhone5" : @3, @"iPhone6" : @6};
 }
 
 - (void)didReceiveMemoryWarning {
@@ -181,7 +184,6 @@
         kWheelSegments newSegments;
         // decide upon external actions
         if (absAcc > step * 5.0) {
-            //[self buzz:YES];
             newSegments = kWheelSegmentOff;
             // and we buzz
         } else if (absAcc > step * 4.0) {
@@ -195,9 +197,12 @@
         } else {
             newSegments = kWheelSegment1;
         }
+        // buzzer
+        [self buzz:(kWheelSegmentOff == newSegments)];
+        // lights
         [self lights:newSegments];
         
-        NSLog(@"Accelleration changed to %f, level %lu",absAcc, (unsigned long)newSegments);
+        // NSLog(@"Accelleration changed to %f, level %lu",absAcc, (unsigned long)newSegments);
         self.currentSegments = newSegments;
         // send stuff over BLE
     }
@@ -327,12 +332,15 @@
 - (void) buzz:(BOOL)buzz
 {
     if (buzz) {
+        NSLog(@"Buzzer ON");
         [protocol digitalWrite:kBuzzPin Value:HIGH];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [protocol digitalWrite:kBuzzPin Value:LOW];
+            NSLog(@"Buzzer Auto OFF");
         });
     } else {
-        [protocol digitalWrite:kBuzzPin Value:LOW];
+//        [protocol digitalWrite:kBuzzPin Value:LOW];
+//        NSLog(@"Buzzer OFF");
     }
 }
 
@@ -348,6 +356,7 @@
 //    }
     NSMutableArray *newPixelState = [[NSMutableArray alloc] initWithCapacity:TOTALPIXELS];
     
+    // only do something when the state has changed
     if (segments != lastSegmentShown) {
         int startLed=0;
         int endLed=-1;
@@ -385,7 +394,8 @@
 //            default:
 //                break;
 //        }
-
+        
+        // loop over all pixels and set all pixels according to 'segments' state
         for (int i = 0 ; i < TOTALPIXELS; i++) {
             if (i >= startLed && i <= endLed) {
                 newPixelState[i] = @1;              // means green
@@ -394,6 +404,7 @@
             }
         }
 
+        // compare new pixels with old pixels and only send the changes to the last pixel setup
         for (int i = 0 ; i < TOTALPIXELS; i++) {
             int value = ((NSNumber *) newPixelState[i]).intValue;
             int oldValue = ((NSNumber *) self.allPixels[i]).intValue;
@@ -406,7 +417,8 @@
                 self.allPixels[i] = [newPixelState[i] copy];
             }
         }
-
+        
+        // store current segment setup
         lastSegmentShown = segments;
     }
 }
@@ -416,5 +428,10 @@
     for (int i = 0 ; i < TOTALPIXELS; i++) {
             [protocol rgbWritePixel:i red:0 green:0 blue:255];
     }
+}
+
+- (IBAction)buzzer:(id)sender
+{
+    [self buzz:YES];
 }
 @end

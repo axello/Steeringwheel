@@ -195,6 +195,10 @@ void loop()
           byte state = ble_read();
           
           digitalWrite(pin, state);
+         Serial.print("T");
+         Serial.print(pin);
+         Serial.print(":");
+         Serial.println(state);
         }
         break;
         case 'N': // set PWM
@@ -213,8 +217,8 @@ void loop()
         
         uint32_t color = strip.Color(R, G, B);
    //     reportRGBValues(color);
-       Serial.print(pin);
-       Serial.print(" ");
+//       Serial.print(pin);
+//       Serial.print(" ");
         strip.setPixelColor(pin, R,G,B);
         strip.show();
         milliSeconds = millis();
@@ -261,6 +265,12 @@ void setPin(byte pin, byte mode)
         pinMode(pin, OUTPUT);
         analogWrite(pin, 0);
     }
+    
+     Serial.print("S");
+     Serial.print(pin);
+     Serial.print(":");
+     Serial.println(mode);
+
 }
 
 void reportRGBValues(uint32_t color)
@@ -327,7 +337,7 @@ void reportPinCapability(byte pin)
 void reportPinDigitalData(byte pin)
 {
   byte state = digitalRead(pin);
-  byte buf[] = {'G', pin, 1, 1};         
+  byte buf[] = {'G', pin, state, 1};         
   ble_write_string(buf, 4);
 }
 
@@ -359,4 +369,5 @@ byte reportPinAnalogData()
      
   return report;
 }
+
 
