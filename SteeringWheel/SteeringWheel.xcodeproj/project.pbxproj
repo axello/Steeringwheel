@@ -36,8 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2DE71516B0B63BB649C0EF05 /* SteeringVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SteeringVC.m; path = SteeringWheelTests/SteeringVC.m; sourceTree = SOURCE_ROOT; };
-		2DE71E0A14A9131109E5034A /* SteeringVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SteeringVC.h; path = SteeringWheelTests/SteeringVC.h; sourceTree = SOURCE_ROOT; };
+		2DE71516B0B63BB649C0EF05 /* SteeringVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SteeringVC.m; path = SteeringWheel/SteeringVC.m; sourceTree = SOURCE_ROOT; };
+		2DE71E0A14A9131109E5034A /* SteeringVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SteeringVC.h; path = SteeringWheel/SteeringVC.h; sourceTree = SOURCE_ROOT; };
 		7704128A1A5180E0001E1020 /* RBLDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBLDetailViewController.h; sourceTree = "<group>"; };
 		7704128B1A5180E0001E1020 /* RBLDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBLDetailViewController.m; sourceTree = "<group>"; };
 		7704128D1A5181C7001E1020 /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };

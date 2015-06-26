@@ -12,6 +12,8 @@
 NSString * const  UUIDPrefKey = @"UUIDPrefKey";
 NSString * const  UUIDIdentifierPrefKey = @"UUIDIdentifierPrefKey";
 
+const int kScanTimeout =   10;
+
 @interface MainVC () {
     BOOL showAlert;
     bool isFindingLast;
@@ -81,7 +83,7 @@ NSString * const  UUIDIdentifierPrefKey = @"UUIDIdentifierPrefKey";
     
     [self.scanButton setEnabled:NO];
     [self.connectButton setEnabled:NO];
-    [ble findBLEPeripherals:3];
+    [ble findBLEPeripherals:kScanTimeout];
     
     [NSTimer scheduledTimerWithTimeInterval:(float)3.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
     
@@ -122,9 +124,9 @@ NSString * const  UUIDIdentifierPrefKey = @"UUIDIdentifierPrefKey";
     
     [self.scanButton setEnabled:NO];
     [self.connectButton setEnabled:NO];
-    [ble findBLEPeripherals:3];
+    [ble findBLEPeripherals:kScanTimeout];
     
-    [NSTimer scheduledTimerWithTimeInterval:(float)3.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:(float)kScanTimeout target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
     
     isFindingLast = false;
     [activityScanning startAnimating];

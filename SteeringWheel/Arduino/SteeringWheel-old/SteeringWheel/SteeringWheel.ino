@@ -1,11 +1,10 @@
 // #include <RBL_services.h>
 
-#include "pins_arduino.h"
+#include "Adafruit_NeoPixel.h"
 #include <SPI.h>
 #include <boards.h>
 #include <RBL_nRF8001.h>
 #include <services.h>
-#include "Adafruit_NeoPixel.h"
 
 // pin modes
 //#define INPUT                 0x00 // defined in wiring.h
@@ -13,7 +12,7 @@
 #define ANALOG                  0x02 // analog pin in analogInput mode
 #define PWM                     0x03 // digital pin in PWM output mode
 #define SERVO                   0x04 // digital pin in Servo output mode
-#define NEOPIXELPIN             0x08
+
 
 // Parameter 1 = number of pixels in strip
 // Parameter 2 = pin number (most are valid)
@@ -23,7 +22,7 @@
 //   NEO_KHZ400  400 KHz bitstream (e.g. FLORA pixels)
 //   NEO_KHZ800  800 KHz bitstream (e.g. High Density LED strip)
 // Adafruit_NeoPixel strip = Adafruit_NeoPixel(1, 7, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(30, NEOPIXELPIN, NEO_GRB + NEO_KHZ400);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(30, 6, NEO_GRB + NEO_KHZ800);
 
 #define DELAY 500
 
@@ -42,7 +41,7 @@ void setup()
 
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
-  colorWipe(0);
+
   ble_begin();
   milliSeconds = millis();
   noReturn = false;
@@ -59,6 +58,127 @@ void loop()
     byte cmd;
     cmd = ble_read();
     
+    // temp
+//        switch (cmd)
+//    {
+//      case 'R':      // RGB values
+//      {
+//        byte pin = ble_read();
+//        R = ble_read();
+//        G = ble_read();
+//        B = ble_read();
+//        
+//        uint32_t color = strip.Color(R, G, B);
+//        reportRGBValues(color);
+//        strip.setPixelColor(pin, R,G,B);
+//        strip.show();
+//
+//      } break;
+//      case 'V': // query protocol version
+//        {
+//          byte buf[] = {'V', 0x00, 0x00, 0x01};
+//          ble_write_string(buf, 4);
+//        }
+//        break;
+//      
+//      case 'C': // query board total pin count
+//        {
+//          byte buf[2];
+//          buf[0] = 'C';
+//          buf[1] = 'C'; 
+//          ble_write_string(buf, 2);
+//        }        
+//        break;
+//      
+//      case 'M': // query pin mode
+//        {  
+//          byte pin = ble_read();
+//          byte buf[] = {'M', pin, 1}; // report pin mode
+//          ble_write_string(buf, 3);
+//        }  
+//        break;
+//      
+//        case 'S': // set pin mode
+//        {
+//          byte pin = ble_read();
+//          byte mode = ble_read();
+//          setPin(pin,mode);
+//          reportPinDigitalData(pin);
+//
+//        }
+//        break;
+//
+//      case 'G': // query pin data
+//        {
+//          byte pin = ble_read();
+//          reportPinDigitalData(pin);
+//        }
+//        break;
+//        
+//      case 'T': // set pin digital state
+//        {
+//          byte pin = ble_read();
+//          byte state = ble_read();
+//          
+//          digitalWrite(pin, state);
+//          reportPinDigitalData(pin);
+//        }
+//        break;
+//      
+//      case 'N': // set PWM
+//        {
+//          byte pin = ble_read();
+//          byte value = ble_read();
+//          
+//          analogWrite(pin, value);
+//          reportPinPWMData(pin);
+//        }
+//        break;
+//      
+//      case 'O': // set Servo
+//        {
+//          byte pin = ble_read();
+//          byte value = ble_read();
+//          reportPinServoData(pin);
+//        }
+//        break;
+//      
+//      case 'A': // query all pin status
+//          reportPinCapability(0);
+//         reportPinDigitalData(0);
+//        
+//        {
+//          uint8_t str[] = "ABC";
+//          sendCustomData(str, 3);
+//        }
+//       
+//        break;
+//          
+//      case 'P': // query pin capability
+//        {
+//          byte pin = ble_read();
+//          reportPinCapability(pin);
+//        }
+//        break;
+//        
+//      case 'Z':
+//        {
+//          byte len = ble_read();
+//          byte buf[len];
+//          for (int i=0;i<len;i++)
+//            buf[i] = ble_read();
+//          Serial.println("->");
+//          Serial.print("Received: ");
+//          Serial.print(len);
+//          Serial.println(" byte(s)");
+//          Serial.print(" Hex: ");
+//          for (int i=0;i<len;i++)
+//            Serial.print(buf[i], HEX);
+//          Serial.println();
+//        }
+//    }
+
+    /// end temp
     // Parse data here
     switch (cmd)
     {
@@ -95,7 +215,7 @@ void loop()
         G = ble_read();
         B = ble_read();
         
-//        uint32_t color = strip.Color(R, G, B);
+        uint32_t color = strip.Color(R, G, B);
    //     reportRGBValues(color);
 //       Serial.print(pin);
 //       Serial.print(" ");

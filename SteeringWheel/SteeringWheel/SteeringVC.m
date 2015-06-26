@@ -13,24 +13,29 @@
 
 #define TOTALPIXELS 30
 
-@interface SteeringVC ()
-    
+@interface SteeringVC () {
+    int _brightness;
+}
+
+// UI
 @property (weak, nonatomic) IBOutlet UISlider *accellSlider;
-@property (weak, nonatomic) IBOutlet UISlider *brakeSlider;
+@property (weak, nonatomic) IBOutlet UISlider *sensitivitySlider;
+@property (weak, nonatomic) IBOutlet UISlider *brightnessSlider;
 
 @property (weak, nonatomic) IBOutlet UILabel *currentAccellerationLevel;
-@property (weak, nonatomic) IBOutlet UILabel *currentBrakeLevel;
+@property (weak, nonatomic) IBOutlet UILabel *currentSensitivityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *maxAccellerationLevel;
-@property (weak, nonatomic) IBOutlet UILabel *maxBrakeLevel;
 @property (weak, nonatomic) IBOutlet UIImageView *arduinoReadyView;
+
+// actions
 - (IBAction)buzzer:(id)sender;
+- (IBAction)setBrightness:(id)sender;
+- (IBAction)setSensitivitySlider:(UISlider *)slider;
 
+// internals
 @property (nonatomic, assign) double accelleration;
-@property (nonatomic, assign) double brakeLimit;
 @property (nonatomic, assign) double maxAccelleration;
-@property (nonatomic, assign) double maxBrakeLimit;
-
-@property (nonatomic, strong) NSNumber *brake;
+@property (nonatomic, assign) double sensitivity;
 
 @property (nonatomic, strong) CMMotionManager *motionManager;
 
@@ -66,7 +71,10 @@
     for (int i=0 ; i < TOTALPIXELS ; i++) {
         self.allPixels[i] = @-1  ;
     }
-    
+    self.sensitivity = 1.0;
+    self.sensitivitySlider.value = self.sensitivity;
+    _brightness = 127;
+    self.brightnessSlider.value = _brightness;
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -106,7 +114,6 @@
     self.motionManager = motManager;
     
     self.maxAccelleration = 0.;
-    self.maxBrakeLimit = 0.;
     
     self.phoneMaxAccelleration = @{@"iPhone4": @2.8 , @"iPhone5" : @3, @"iPhone6" : @6};
 }
@@ -120,20 +127,14 @@
     self.accelleration = slider.value;
 }
 
-- (IBAction)setBrakeLimitSlider:(UISlider *)slider
+- (IBAction)setSensitivitySlider:(UISlider *)slider
 {
-    self.brakeLimit = slider.value;
+    self.sensitivity = slider.value;
+    
+    self.currentSensitivityLabel.text = [NSString stringWithFormat:@"sensitivity: %5.3f",self.sensitivity];
+
 }
 
-- (NSNumber *)brake
-{
-    return [NSNumber numberWithDouble:self.brakeLimit];
-}
-
-- (void) setBrake:(NSNumber *)brake
-{
-    self.brakeLimit = brake.doubleValue;
-}
 #pragma mark - timers
 - (void) startTimer
 {
@@ -165,19 +166,14 @@
         self.maxAccelleration = absAcc;
         self.maxAccellerationLevel.text = [NSString stringWithFormat:@"Max acc: %5.3f",absAcc];
     }
-    self.brakeSlider.value = absAcc;
-    self.currentBrakeLevel.text = [NSString stringWithFormat:@"brake: %5.3f",absAcc];
-    if (absAcc > self.maxBrakeLimit) {
-        self.maxBrakeLimit = absAcc;
-        self.maxBrakeLevel.text = [NSString stringWithFormat:@"Max brake: %5.3f",absAcc];
-    }
     
     [self updateNeoPixels:absAcc];
 }
 
 - (void) updateNeoPixels:(double) absAcc
 {
-    double maxAcc = [self.phoneMaxAccelleration[self.currentPhone] doubleValue];
+    // double maxAcc = [self.phoneMaxAccelleration[self.currentPhone] doubleValue];
+    double maxAcc = self.sensitivity;
     double step = maxAcc / 6.0;
     
     if (absAcc != self.currentSegments) {
@@ -324,9 +320,6 @@
 - (void) setupArduinoPorts
 {
     [protocol setPinMode:kBuzzPin Mode:OUTPUT];
-    [protocol setPinMode:kWheel1 Mode:OUTPUT];
-    [protocol setPinMode:kWheel2 Mode:OUTPUT];
-    [protocol setPinMode:kWheel3 Mode:OUTPUT];
 }
 
 - (void) buzz:(BOOL)buzz
@@ -410,7 +403,7 @@
             int oldValue = ((NSNumber *) self.allPixels[i]).intValue;
             if (value != oldValue) {
                 if (value) {
-                    [protocol rgbWritePixel:i red:0 green:255 blue:0];
+                    [protocol rgbWritePixel:i red:0 green:_brightness blue:0];
                 } else {
                     [protocol rgbWritePixel:i red:0 green:0 blue:0];
                 }
@@ -426,12 +419,29 @@
 - (void) allLights
 {
     for (int i = 0 ; i < TOTALPIXELS; i++) {
-            [protocol rgbWritePixel:i red:0 green:0 blue:255];
+            [protocol rgbWritePixel:i red:0 green:0 blue:_brightness * 0.25];
     }
 }
 
 - (IBAction)buzzer:(id)sender
 {
     [self buzz:YES];
+}
+
+- (void) resetAllPixels
+{
+    for (int i = 0 ; i < TOTALPIXELS; i++) {
+        int value = ((NSNumber *) self.allPixels[i]).intValue;
+        if (value) {
+            [protocol rgbWritePixel:i red:0 green:_brightness blue:0];
+        } else {
+            [protocol rgbWritePixel:i red:0 green:0 blue:0];
+        }
+    }
+
+}
+- (IBAction)setBrightness:(UISlider *)sender {
+    _brightness = sender.value;
+    [self resetAllPixels];
 }
 @end
