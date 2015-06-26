@@ -9,6 +9,6 @@
 #ifndef SteeringWheel_ArduinoPins_h
 #define SteeringWheel_ArduinoPins_h
 
-#define kBuzzPin   3
+#define kBuzzPin   8
 
 #endif

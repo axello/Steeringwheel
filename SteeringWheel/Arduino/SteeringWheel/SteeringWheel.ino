@@ -13,7 +13,7 @@
 #define ANALOG                  0x02 // analog pin in analogInput mode
 #define PWM                     0x03 // digital pin in PWM output mode
 #define SERVO                   0x04 // digital pin in Servo output mode
-#define NEOPIXELPIN             0x08
+#define NEOPIXELPIN             0x09
 
 // Parameter 1 = number of pixels in strip
 // Parameter 2 = pin number (most are valid)
