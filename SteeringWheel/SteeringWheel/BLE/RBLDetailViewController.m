@@ -48,9 +48,9 @@
             NSNumber *n = [ble.peripheralsRssi objectAtIndex:i];
             NSString *name = [[ble.peripherals objectAtIndex:i] name];
             
-            if (p.UUID != NULL)
+            if (p.identifier.UUIDString != NULL)
             {
-                [self.BLEDevices insertObject:[self getUUIDString:p.UUID] atIndex:i];
+                [self.BLEDevices insertObject:[self getUUIDString:(__bridge CFUUIDRef)(p.identifier)] atIndex:i];
                 [self.BLEDevicesRssi insertObject:n atIndex:i];
                 
                 if (name != nil)
@@ -65,7 +65,7 @@
             else
             {
                 [self.BLEDevices insertObject:@"NULL" atIndex:i];
-                [self.BLEDevicesRssi insertObject:0 atIndex:i];
+                [self.BLEDevicesRssi insertObject:@0 atIndex:i];
                 [self.BLEDevicesName insertObject:@"RedBear Device" atIndex:i];
             }
         }
